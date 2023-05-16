@@ -70,12 +70,16 @@ namespace ASPNET_Core_2_1.Controllers
                     _movieService.Update(movie);
 
                     await _movieCategoryMapService.UpdateMovieToCategoryAsync(movieViewModel.Id, movieViewModel.CategoriesId);
-
+                    TempData["SuccessMessage"] = movie.MovieName;
                 }
                 catch (Exception ex)
                 {
                     BadRequest(ex.Message);
+
+                    TempData["ErrorMessage"] = movieViewModel.MovieName;
                 }
+            
+
             }
   
             // return partial view model donucek 
